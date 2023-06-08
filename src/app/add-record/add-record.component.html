@@ -1,0 +1,24 @@
+
+
+
+    <div class="container">
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="form-title" >
+            <h2>Add Well</h2>
+        </div>
+        <mat-form-field>
+            <input matInput name="uwi" placeholder="UWI" ngModel required/>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput name="wellname" placeholder="Well Name" ngModel required/>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput name="state" placeholder="State" ngModel required/>
+        </mat-form-field>
+<br/>
+
+<div class="container">
+        <button padding="10px" type="submit" mat-raised-button color="primary" [disabled]="f.invalid"> Insert </button>
+        </div>
+</form>
+</div>
