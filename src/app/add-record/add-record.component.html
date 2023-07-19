@@ -2,17 +2,17 @@
 
 
     <div class="container">
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+<form #f="ngForm" (ngSubmit)="SendToFirebase(f)">
         <div class="form-title" >
             <h2>Add Well</h2>
         </div>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input matInput name="uwi" placeholder="UWI" ngModel required/>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input matInput name="wellname" placeholder="Well Name" ngModel required/>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline"> 
             <input matInput name="state" placeholder="State" ngModel required/>
         </mat-form-field>
 <br/>
@@ -22,3 +22,4 @@
         </div>
 </form>
 </div>
+

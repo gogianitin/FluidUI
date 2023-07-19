@@ -3,6 +3,9 @@ import {NgForm} from '@angular/forms';
 import { WellService } from '../service/well.service';
 import { Well } from '../model/well.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { AngularFirestore, } from '@angular/fire/compat/firestore';
+import { doc, setDoc } from "firebase/firestore"; 
+import { db } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-record',
@@ -11,12 +14,34 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class AddRecordComponent {
 
-  constructor(private wellService:WellService,private _snackBar: MatSnackBar){}
+  constructor(
+    private firestore: AngularFirestore
+    ){}
 
-  onSubmit(form: NgForm)
+
+  uwi: any;
+  wellname: any;
+  state: any;
+
+  async SendToFirebase(form: NgForm)
   {
-    this.wellService.addWell(form.value)
-    this._snackBar.open('Well Record Added','Success',{duration:4000});
+    //collect inputs
+    const uwi: any = form.value.uwi;
+    const wellname: any = form.value.wellname;
+    const state: any = form.value.state;
+    //send inputs
+    console.log(uwi);
+    console.log(wellname);
+    console.log(state);
+
+    const well: Well = {uwi, wellname, state}
+    //this.firestore.collection('wellData').doc(this.wellname).set(well);
+    await setDoc(doc(db, "wellData", wellname), {
+      uwi: uwi,
+      wellname: wellname,
+      state: state
+    });
+    
   }
 
 }
